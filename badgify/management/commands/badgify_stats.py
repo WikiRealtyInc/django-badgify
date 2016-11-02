@@ -12,12 +12,8 @@ class Command(BaseCommand):
     """
     help = 'Shows badge stats.'
 
-    option_list = BaseCommand.option_list + (
-        make_option('--db-read',
-            action='store',
-            dest='db_read',
-            type='string'),
-    )
+    def add_arguments(self, parser):
+        parser.add_argument("-d", "--db-read", type=str, dest="db_read", action="store")
 
     def handle(self, *args, **options):
         show_stats(**options)
