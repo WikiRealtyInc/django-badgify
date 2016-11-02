@@ -13,18 +13,10 @@ class Command(BaseCommand):
     """
     help = 'Resets awards.'
 
-    option_list = BaseCommand.option_list + (
+    def add_arguments(self, parser):
+        parser.add_argument("-b", "--badges", action="store", dest="badges", type=str)
+        parser.add_argument("-e", "--exclude-badges", action="store", dest="exclude_badges", type=str)
 
-        make_option('--badges',
-            action='store',
-            dest='badges',
-            type='string'),
-
-        make_option('--exclude-badges',
-            action='store',
-            dest='exclude_badges',
-            type='string'),
-    )
 
     def handle(self, *args, **options):
         options = sanitize_command_options(options)
